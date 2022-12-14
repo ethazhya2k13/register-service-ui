@@ -1,0 +1,75 @@
+<div class="main-div">
+  <mat-card class="example-card">
+    <mat-card-content>
+      <h1>User Management System</h1>
+
+    </mat-card-content>
+    <div class="container mt-5" style="display: table-caption; margin-top: 2px">
+      <div class="card" style="padding: 20px">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm)" style="height: 20rem">
+
+          <!-- User name -->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-icon matPrefix style="
+                background: #004e77;
+                height: 52px;
+                padding: 14px;
+                margin-right: 10px;
+                border-radius: 3px;
+                padding-right: 34px;
+                color: white;
+                margin-top: 1px;
+                margin-left: -10px;
+                padding-top: 16.75px;">person</mat-icon>
+            <input matInput placeholder=" Enter your User Name" formControlName="userName" />
+
+            <!-- required error -->
+            <mat-error *ngIf="errorHandling('userName','required')">
+              User Name is mandatory
+            </mat-error>
+
+          </mat-form-field>
+          <br><br>
+          <!-- User password -->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-icon matPrefix style="
+           background: #004e77;
+                height: 52px;
+                padding: 14px;
+                margin-right: 10px;
+                border-radius: 3px;
+                padding-right: 34px;
+                color: white;
+                margin-top: 1px;
+                margin-left: -10px;
+                padding-top: 16.75px;
+          ">key</mat-icon>
+            <input matInput [type]="hide?'password':'text'" placeholder="Enter your User Password"
+              formControlName="userPassword" />
+            <!-- required error -->
+
+            <mat-error *ngIf="errorHandling('userPassword','required')">
+              User Password is mandatory
+            </mat-error>
+
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-lable]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+          </mat-form-field>
+          <!-- Submit -->
+          <div class="button-wrapper">
+            <button mat-raised-button color="primary" mat-button>
+              Login
+            </button>
+
+          </div>
+          <br> <br>
+          <span (click)="register()" style="margin-left: 75px;"><b>Don't have an account? </b><u
+              style="cursor:pointer;"> Register here</u></span>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+</div>

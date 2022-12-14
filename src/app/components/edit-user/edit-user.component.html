@@ -1,0 +1,164 @@
+<div class="container">
+  <mat-card-header>
+    <mat-toolbar class="toolbar">
+  <h1>Edit User Details</h1>
+
+    <span class="toolbar-spacer"></span>
+    <!-- <mat-icon (click)="onNoClick()">cancel</mat-icon> -->
+  </mat-toolbar>
+  </mat-card-header>
+  <br>
+  <mat-card class="mat-elevation-z8">
+    <div class="col-lg-12 well">
+      <form [formGroup]="editUserForm">
+
+   <!-- userId, firstname, lastname -->
+   <div class="form-group col-md-6">
+    <mat-form-field appearance="outline">
+      <mat-label>User Id</mat-label>
+     <input matInput class="form-control" placeholder="User Id" formControlName="userId" readonly/>
+    </mat-form-field>
+  </div>
+  <div class="form-row" style="display: flex;" >
+   <div class="form-group col-md-6">
+      <mat-form-field  appearance="outline">
+        <mat-label>First Name</mat-label>
+       <input matInput class="form-control" placeholder="First Name" formControlName="firstName" />
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('firstName','required')">
+        First Name is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('firstName','pattern')">
+        First Name should contain alphabets
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+
+    </div>
+    <div class="form-group col-md-6">
+      <mat-form-field  appearance="outline">
+        <mat-label>Last Name</mat-label>
+       <input matInput class="form-control" placeholder="Last Name" formControlName="lastName"/>
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('lastName','required')">
+        Last Name is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('lastName','pattern')">
+        Last Name should contain alphabets
+      </mat-error>
+    </mat-form-field>
+    <br>
+
+    </div>
+    </div>
+    <div class="form-row" style="display: flex;">
+    <!--userpassword, email, user name -->
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+       <input matInput class="form-control" placeholder="User Name" formControlName="userName" readonly/>
+      <!-- required error -->
+      <mat-error *ngIf="errorHandling('userName','required')">
+        User Name is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('userName','pattern')">
+        User Name should be alphanumeric
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+
+    </div>
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+       <input type="password" matInput class="form-control" placeholder="Password" formControlName="userPassword" />
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('userPassword','required')">
+        Password is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('userPassword','pattern')">
+        Password should contain alphanumeric with special character like @, $, %, &
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+
+    </div>
+  </div>
+  <div class="form-row" style="display: flex;">
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" class="form-control" formControlName="userEmail" placeholder="abcd@gmail.com" style="text-transform: lowercase;"/>
+   <!-- required error -->
+   <mat-error *ngIf="errorHandling('userEmail','required')">
+    Email is mandatory
+  </mat-error>
+  <!-- pattern error -->
+  <mat-error *ngIf="errorHandling('userEmail','pattern')">
+    Email should be like abc@def.com
+  </mat-error>
+
+</mat-form-field>
+<br>
+
+    </div>
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <input matInput type="text" class="form-control" formControlName="userGender"/>
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('userGender','required')">
+        Gender is mandatory
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+
+    </div>
+  </div>
+       <!-- created at, updated at -->
+       <!-- <div class="form-row" style="display: flex;">
+        <div class="form-group col-md-6">
+          <mat-form-field  appearance="outline">
+            <mat-label>Created At</mat-label>
+            <input matInput type="text" class="form-control" formControlName="created" readonly/>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Updated At</mat-label>
+            <input matInput type="text" class="form-control" formControlName="updatedAt" readonly/>
+          </mat-form-field>
+        </div>
+    </div> -->
+
+       <div class="form-row" style="display: flex;">
+
+        <div class="form-group col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>roleId</mat-label>
+            <input matInput class="form-control" formControlName="roleId"/>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>roleName</mat-label>
+            <input matInput class="form-control" formControlName="roleName"/>
+          </mat-form-field>
+        </div>
+    </div>
+
+  </form>
+  </div>
+  </mat-card>
+  </div>
+  <div class="form-group button">
+    <button mat-raised-button class="btn submit" (click)="editUser()">Save Changes</button>
+  </div>

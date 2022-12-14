@@ -1,0 +1,19 @@
+<mat-nav-list>
+  <div class="logo py-4" style="padding-top: 0.5rem!important;
+  padding-bottom: 0.5rem!important;">
+  <h1 style="font-variant: all-petite-caps; font-variant: petite-caps;
+  font-family: monospace;">User Management System</h1>
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2"></h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+    <mat-icon>home</mat-icon> Home
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/users" *ngIf="authService.roleMatch(['Admin'])">
+    <mat-icon>dashboard</mat-icon> Users
+  </a>
+  <a *ngIf="isLoggedIn()" mat-list-item routerLinkActive="list-item-active" routerLink="/profile">
+    <mat-icon>dashboard</mat-icon> User profile
+  </a>
+</mat-nav-list>

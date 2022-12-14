@@ -1,0 +1,32 @@
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 68px;
+    background: #2c3344;
+    margin: 0 -1rem;
+    font-variant-caps: petite-caps;
+    font-size: 25px;
+    font-family: monospace;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    background: white;
+    color: black;
+    font-size: 2rem;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}

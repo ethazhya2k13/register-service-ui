@@ -1,0 +1,162 @@
+<div class="container">
+  <mat-card-header>
+    <mat-toolbar class="toolbar">
+  <h1>Add User</h1>
+
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar>
+  </mat-card-header>
+  <br>
+  <mat-card class="mat-elevation-z8">
+    <div class="col-lg-12 well">
+      <form [formGroup]="addUserForm" >
+        <div class="form-row">
+   <!-- firstname, lastname -->
+   <div class="form-group col-md-6">
+      <mat-form-field  class="example-full-width"
+      appearance="outline"
+        style="
+          background: white;
+          border-radius: 3px;
+          height: 19px;
+          padding-bottom: 33px;
+          width: 14rem;">
+        <mat-label>First Name</mat-label>
+       <input matInput class="form-control" placeholder="First Name" formControlName="firstName" />
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('firstName','required')">
+        First Name is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('firstName','pattern')">
+        First Name should contain alphabets
+      </mat-error>
+
+    </mat-form-field>
+    <br>
+    <br>
+    </div>
+    <div class="form-group col-md-6">
+      <mat-form-field class="example-full-width"
+      appearance="outline" style="margin-left: 0.1rem;width: 14rem;">
+        <mat-label>Last Name</mat-label>
+       <input matInput class="form-control" placeholder="Last Name" formControlName="lastName"/>
+       <!-- required error -->
+       <mat-error *ngIf="errorHandling('lastName','required')">
+        Last Name is mandatory
+      </mat-error>
+      <!-- pattern error -->
+      <mat-error *ngIf="errorHandling('lastName','pattern')">
+        Last Name should contain alphabets
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <br>
+    </div>
+    </div>
+    <!-- email -->
+    <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="example-full-width"
+      appearance="outline" style="margin-top: 21px;width: 28.7rem;">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" class="form-control" formControlName="userEmail" placeholder="abcd@gmail.com" style="text-transform: lowercase"/>
+     <!-- required error -->
+     <mat-error *ngIf="errorHandling('userEmail','required')">
+      Email is mandatory
+    </mat-error>
+    <!-- pattern error -->
+    <mat-error *ngIf="errorHandling('userEmail','pattern')">
+      Email should be like abc@def.com
+    </mat-error>
+
+  </mat-form-field>
+  <br>
+  <br>
+<br>
+
+
+    </div>
+  </div>
+    <!-- username, password -->
+    <div class="form-row">
+      <!-- firstname, lastname -->
+      <div class="form-group col-md-6">
+         <mat-form-field class="example-full-width"
+         appearance="outline"
+           style="
+             background: white;
+             border-radius: 3px;
+             height: 19px;
+             padding-bottom: 33px;
+             width: 14rem;">
+           <mat-label>Username</mat-label>
+          <input matInput class="form-control" placeholder="User Name" formControlName="userName"/>
+          <!-- required error -->
+          <mat-error *ngIf="errorHandling('userName','required')">
+            User Name is mandatory
+          </mat-error>
+          <!-- pattern error -->
+          <mat-error *ngIf="errorHandling('userName','pattern')">
+            User Name should be alphanumeric
+          </mat-error>
+
+        </mat-form-field>
+        <br>
+        <br>
+       </div>
+       <div class="form-group col-md-6">
+         <mat-form-field  class="example-full-width"
+         appearance="outline"
+           style="
+             background: white;
+             border-radius: 3px;
+             height: 19px;
+             padding-bottom: 33px;
+             width: 14rem;">
+           <mat-label>Password</mat-label>
+          <input type="password" matInput class="form-control" placeholder="Password" formControlName="userPassword" />
+         <!-- required error -->
+         <mat-error *ngIf="errorHandling('userPassword','required')">
+          Password is mandatory
+        </mat-error>
+        <!-- pattern error -->
+        <mat-error *ngIf="errorHandling('userPassword','pattern')">
+          Password should contain alphanumeric with special character like @, $, %, &
+        </mat-error>
+
+      </mat-form-field>
+      <br>
+      <br>
+       </div>
+       </div>
+       <!-- gender, role -->
+       <div class="form-row">
+        <div class="form-group col-md-6">
+          <mat-form-field style="width: 14.1rem; top: 1rem;" appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="userGender">
+               <mat-option value="Male">Male</mat-option>
+               <mat-option value="Female">Female</mat-option>
+               <mat-option value="Other">Other</mat-option>
+            </mat-select><!-- required error -->
+            <mat-error *ngIf="errorHandling('userGender','required')">
+              Gender is mandatory
+            </mat-error>
+
+          </mat-form-field>
+          <br>
+          <br>
+
+        </div>
+
+    </div>
+
+  </form>
+  </div>
+  </mat-card>
+  </div>
+  <div class="form-group button">
+    <button mat-raised-button class="btn submit" (click)="addUsers()">Submit</button>
+    <button mat-raised-button class="btn reset" (click)="reset()">Reset</button>
+  </div>

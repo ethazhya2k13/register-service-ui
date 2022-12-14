@@ -1,0 +1,25 @@
+@import "../../home/home.component.scss";
+table.mat-table{
+  font-family: system-ui!important;
+}
+
+.table-responsive{
+  border-left-style: outset;
+  border-top-style: outset;
+}
+
+.button-add-row{
+  color: white;
+  background: #697082;
+  margin-left: 51rem;
+}
+
+
+.mat-row:hover .mat-cell{
+  background-color: #c9d6f9;
+
+}
+
+.viewport{
+  height: 435px !important;
+}

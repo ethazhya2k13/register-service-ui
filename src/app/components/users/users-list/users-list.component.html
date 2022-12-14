@@ -1,0 +1,129 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">Users</li>
+      </ol>
+    </nav>
+    <!-- add user -->
+    <button class="button-add-row" mat-button (click)="addUsers()" matTooltip="Add New Users">Add Users</button>
+  </div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="search" style="font-size: 0.6rem;">
+      <!-- search -->
+<mat-form-field appearance="fill">
+<input matInput placeholder="search" autocomplete="off" (keyup)="filterData($event)">
+</mat-form-field>
+<!-- gender -->
+<mat-form-field appearance="fill" style="margin-left: 17px;">
+  <mat-label>Filter Gender</mat-label>
+  <mat-select (selectionChange)="onGenderChange($event)">
+    <mat-option (click)="resetFilters()">-- Select Gender --</mat-option>
+    <mat-option value="male">Male</mat-option>
+    <mat-option value="Female">Female</mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- role -->
+<mat-form-field appearance="fill" style="margin-left: 18px;">
+  <mat-label>Filter Role</mat-label>
+  <mat-select (selectionChange)="onRoleChange($event)">
+    <mat-option (click)="resetFilters()">-- Select Role --</mat-option>
+    <mat-option value="admin">Admin</mat-option>
+    <mat-option value="user">User</mat-option>
+  </mat-select>
+</mat-form-field>
+&nbsp;
+<button mat-flat-button color="warn" (click)="resetFilters()">Reset</button>
+</div>
+<cdk-virtual-scroll-viewport itemSize="7" class="viewport">
+  <div class="table-responsive" style="height: 398px;">
+    <table mat-table [dataSource]="dataSource" #usersTable matSort>
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 81px;position: fixed;">User Id</th>
+        <td mat-cell *matCellDef="let users" click="viewUsers(row:Users)" [routerLink]="['/user/user-details',users.userId]" style=" cursor: pointer; color:#0f172a"><b>{{users.userId}}</b></td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 78px; position: fixed;"> First Name </th>
+        <td mat-cell *matCellDef="let users"> {{users.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 78px; position: fixed;"> Last Name </th>
+        <td mat-cell *matCellDef="let users"> {{users.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 174px; position: fixed;"> Email-Id </th>
+        <td mat-cell *matCellDef="let users"> {{users.userEmail}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userGender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 78px; position: fixed;"> Gender</th>
+        <td mat-cell *matCellDef="let users"> {{users.userGender}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 80px; position: fixed;"> User Name</th>
+        <td mat-cell *matCellDef="let users"> {{users.userName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 11rem; position: fixed;"> Created At</th>
+        <td mat-cell *matCellDef="let users"> {{users.created| date:'medium':'UTC +5'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 11rem; position: fixed;">Last Updated at</th>
+        <td mat-cell *matCellDef="let users"> {{users.updatedAt|date:'medium':'UTC +5'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="roleId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 78px; position: fixed;"> Role Id</th>
+        <td mat-cell *matCellDef="let users"> {{users.roleId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="roleName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 78px; position: fixed;"> Role Name</th>
+        <td mat-cell *matCellDef="let users"> {{users.roleName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef style="min-width: 54px;"></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button
+          class="material-icons app-toolbar-menu delete-button"
+          (click)="editUser(row)"
+          matTooltip="Update User">
+            <img src="../../../assets/images/edit.png" style="height: 30px; width: 30px;"></button>
+        </td>
+      </ng-container>
+      <!-- delete -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let userId">
+          <button mat-icon-button class="material-icons app-toolbar-menu delete-button" (click)="deleteUser(userId)" matTooltip="Delete User" >
+            <img src="../../../assets/images/delete.png" style="height: 30px; width: 30px;"></button>
+        </td>
+      </ng-container>
+      <tr *ngIf="!users">
+        <td colspan="4" class="text-center">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+        </td>
+    </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" ></tr>
+    </table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; height: 19rem; margin-left: -192px;">
+      <app-loading-spinner>
+      </app-loading-spinner>
+      </div>
+    </div>
+
+  </cdk-virtual-scroll-viewport>
+    <mat-paginator #paginator [length]="100" [pageSize]="7" [pageSizeOptions]="[7, 14, 21, 28]" aria-label="Select page"
+      showFirstLastButtons>
+    </mat-paginator>
+
+</div>
+</div>

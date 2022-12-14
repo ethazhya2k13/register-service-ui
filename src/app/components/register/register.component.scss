@@ -1,0 +1,94 @@
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  padding: 14px!important;
+ margin-top: -45px;
+ padding-bottom: 48px!important;
+}
+
+.container mt-5{
+  display: table-caption;
+  margin-top: -21px;
+  margin-bottom: 152px;
+}
+
+.mat-card{
+  background: #b3bbeb6b;
+  padding: 60px;
+
+}
+
+.mat-card-content.mat-card{
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 20px;
+}
+
+.mat-form-field{
+  margin-top: 7px;
+  margin-bottom: 17px;
+  width: 25rem;
+}
+
+.button-wrapper{
+  display: inline-grid;
+}
+
+.mat-raised-button{
+  background: #004e77;
+  margin-left: 170px;
+}
+
+h1{
+  text-align: center;
+    font-variant: petite-caps;
+    font-weight: 600;
+}
+
+.mat-form-field-appearance-standard .mat-form-field-flex {
+  padding-top: 1.75px;
+}
+
+a{
+  text-decoration: none;
+    text-align: center;
+    color: #004e77;
+    margin-left: 9rem;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color: #004e77 !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  background-color: #004e77 !important;
+}
+
+.mat-radio-outer-circle {
+   border-color: #004e77 !important;
+}
+
+.mat-icon{
+  background: #004e77;
+  height: 52px;
+  padding: 14px;
+  margin-right: 10px;
+  border-radius: 3px;
+  padding-right: 34px;
+  color: white;
+  margin-top: 1px;
+  margin-left: -10px;
+  padding-top: 16.75px;
+}
+
+.mat-form-field{
+  background: white;
+  border-radius: 3px;
+  height: 19px;
+  padding-bottom: 33px;
+}
